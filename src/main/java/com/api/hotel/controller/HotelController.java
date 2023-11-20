@@ -26,7 +26,7 @@ import com.api.hotel.service.ICloudinaryService;
 import com.api.hotel.service.IHotelService;
 
 //EL CrossOrigin sirve para enlazar con el ANGULAR
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:5000"})
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/hotel")
 public class HotelController {
@@ -109,6 +109,12 @@ public class HotelController {
 		}
 		String imageId = hotelExistente.getImagen_id();
 		iCloudinaryService.delete(imageId);
+		
+		// Valida si el tipo de image es correcto
+    	BufferedImage bi = ImageIO.read(imagen.getInputStream());
+    	if(bi == null) {
+    		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    	}
 		
 		Map<String, Object> result = iCloudinaryService.upload(imagen);
 		String imageUrl = result.get("url").toString();

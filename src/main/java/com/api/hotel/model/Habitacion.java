@@ -28,8 +28,9 @@ public class Habitacion {
 	@Column(name = "numero")
     private int numero;
 
-	@Column(name = "tipo")
-    private String tipo;
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tipo_id")
+    private TipoHabitacion tipo_habitacion;
 
 	@Column(name = "capacidad")
     private int capacidad;
@@ -42,6 +43,9 @@ public class Habitacion {
 	
 	@Column(name = "imagen_id")
     private String imagen_id;
+	
+	@Column(name = "estado")
+    private boolean estado;
 
     public String getImagen_id() {
 		return imagen_id;
@@ -49,6 +53,14 @@ public class Habitacion {
 
 	public void setImagen_id(String imagen_id) {
 		this.imagen_id = imagen_id;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -85,12 +97,13 @@ public class Habitacion {
 		this.numero = numero;
 	}
 
-	public String getTipo() {
-		return tipo;
+
+	public TipoHabitacion getTipoHabitacion() {
+		return tipo_habitacion;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipoHabitacion(TipoHabitacion tipoHabitacion) {
+		this.tipo_habitacion = tipoHabitacion;
 	}
 
 	public int getCapacidad() {
@@ -124,6 +137,5 @@ public class Habitacion {
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
 	}
-
 	
 }

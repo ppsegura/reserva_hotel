@@ -33,6 +33,8 @@ public class Hotel {
 	
 	@Column(name = "imagen_id")
     private String imagen_id;
+	
+	public Hotel() {}
 
     public String getImagen_id() {
 		return imagen_id;
@@ -88,6 +90,10 @@ public class Hotel {
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+	
+	public Hotel(String nombre) {
+	    this.nombre = nombre;
 	}
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.hotel.model.Usuario;
 import com.api.hotel.service.IUsuarioService;
 
+
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -30,14 +31,16 @@ public class UsuarioController {
 		return new ResponseEntity<List<Usuario>>(lista, HttpStatus.OK);
 	}
 
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> listarPorId(@PathVariable("id") int id) {
 		Usuario usu = iUsuarioService.listarPorId(id);
-		if(usu.getUserId() > 0 ) {
+		if(usu.getUser_id() > 0 ) {
 			return new ResponseEntity<Usuario>(usu,HttpStatus.OK);
 			} else
 		return new ResponseEntity<Usuario>(usu,HttpStatus.NO_CONTENT);
 	}
+	
 
 	@PostMapping
 	public ResponseEntity<Usuario> registrar(@RequestBody Usuario u) {
@@ -62,5 +65,10 @@ public class UsuarioController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	
+	
+	@GetMapping("/{username}")
+    public Usuario obtenerUsuario(@PathVariable("username") String username){
+        return iUsuarioService.findByNombre(username);
+    }
 	
 }

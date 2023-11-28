@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +24,7 @@ import com.api.hotel.model.Hotel;
 import com.api.hotel.service.ICloudinaryService;
 import com.api.hotel.service.IHotelService;
 
-//EL CrossOrigin sirve para enlazar con el ANGULAR
-@CrossOrigin(origins = "*")
+
 @RestController
 @RequestMapping("/hotel")
 public class HotelController {
